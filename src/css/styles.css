@@ -19,8 +19,15 @@ body {
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: center;
+  gap: 32px;
   margin-top: 20px;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 #datetime-picker {
