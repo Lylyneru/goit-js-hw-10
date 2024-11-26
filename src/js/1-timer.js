@@ -3,6 +3,25 @@ import 'flatpickr/dist/flatpickr.min.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
+document.addEventListener('DOMContentLoaded', () => {
+  // Створення div з класом .wrapper
+  const wrapper = document.createElement('div');
+  wrapper.classList.add('wrapper');
+
+  // Знаходимо існуючі елементи
+  const datetimePicker = document.querySelector('#datetime-picker');
+  const startButton = document.querySelector('button[data-start]');
+  const timer = document.querySelector('.timer');
+
+  // Додаємо елементи в div.wrapper
+  wrapper.appendChild(datetimePicker);
+  wrapper.appendChild(startButton);
+  wrapper.appendChild(timer);
+
+  // Додаємо wrapper до тіла сторінки (або іншого контейнера)
+  document.body.appendChild(wrapper);
+});
+
 const datePicker = document.querySelector('#datetime-picker');
 const startBtn = document.querySelector('button[data-start]');
 const timerFields = {
@@ -11,17 +30,6 @@ const timerFields = {
   minutes: document.querySelector('[data-minutes]'),
   seconds: document.querySelector('[data-seconds]'),
 };
-
-// document.addEventListener('DOMContentLoaded', () => {
-//   const wrapper = document.createElement('div');
-//   wrapper.classList.add('wrapper');
-
-//   document.body.appendChild(wrapper);
-
-//   wrapper.appendChild(datePicker);
-//   wrapper.appendChild(startBtn);
-//   wrapper.appendChild(timerFields);
-// });
 
 let selectedDate = null;
 let timerInterval = null;
