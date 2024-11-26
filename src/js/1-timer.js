@@ -12,16 +12,16 @@ const timerFields = {
   seconds: document.querySelector('[data-seconds]'),
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-  const wrapper = document.createElement('div');
-  wrapper.classList.add('wrapper');
+// document.addEventListener('DOMContentLoaded', () => {
+//   const wrapper = document.createElement('div');
+//   wrapper.classList.add('wrapper');
 
-  document.body.appendChild(wrapper);
+//   document.body.appendChild(wrapper);
 
-  wrapper.appendChild(datePicker);
-  wrapper.appendChild(startBtn);
-  wrapper.appendChild(timerFields);
-});
+//   wrapper.appendChild(datePicker);
+//   wrapper.appendChild(startBtn);
+//   wrapper.appendChild(timerFields);
+// });
 
 let selectedDate = null;
 let timerInterval = null;
@@ -29,36 +29,33 @@ let timerInterval = null;
 startBtn.disabled = true;
 
 flatpickr(datePicker, {
-  enableTime: true, // Увімкнення часу
-  time_24hr: true, // Формат 24 години
-  defaultDate: new Date(), // Поточна дата
-  minuteIncrement: 1, // Крок хвилин
+  enableTime: true,
+  time_24hr: true,
+  defaultDate: new Date(),
+  minuteIncrement: 1,
   onClose(selectedDates) {
     const now = new Date();
 
-    // Перевірка, чи обрана дата в майбутньому
     if (selectedDates[0] <= now) {
       iziToast.error({
         title: 'Error',
         message: 'Please choose a date in the future',
         position: 'topRight',
       });
-      startBtn.disabled = true; // Блокувати кнопку
+      startBtn.disabled = true;
     } else {
       selectedDate = selectedDates[0];
-      startBtn.disabled = false; // Розблокувати кнопку
+      startBtn.disabled = false;
     }
   },
 });
 
-// Обробник кліку для кнопки старт
 startBtn.addEventListener('click', () => {
   if (!selectedDate) return;
 
-  startBtn.disabled = true; // Деактивувати кнопку
-  datePicker.disabled = true; // Заблокувати вибір нової дати
+  startBtn.disabled = true;
+  datePicker.disabled = true;
 
-  // Запуск таймера
   startCountdown();
 });
 
@@ -69,7 +66,7 @@ function startCountdown() {
 
     if (timeRemaining <= 0) {
       clearInterval(timerInterval);
-      updateTimerFields(0, 0, 0, 0); // Показати 00:00:00:00
+      updateTimerFields(0, 0, 0, 0);
       iziToast.success({
         title: 'Finished',
         message: 'Countdown complete!',
@@ -83,7 +80,6 @@ function startCountdown() {
   }, 1000);
 }
 
-// Функція для оновлення інтерфейсу таймера
 function updateTimerFields(days, hours, minutes, seconds) {
   timerFields.days.textContent = addLeadingZero(days);
   timerFields.hours.textContent = addLeadingZero(hours);
@@ -91,12 +87,10 @@ function updateTimerFields(days, hours, minutes, seconds) {
   timerFields.seconds.textContent = addLeadingZero(seconds);
 }
 
-// Форматування часу (додавання нуля)
 function addLeadingZero(value) {
   return String(value).padStart(2, '0');
 }
 
-// Конвертація мілісекунд у дні, години, хвилини, секунди
 function convertMs(ms) {
   const second = 1000;
   const minute = second * 60;
