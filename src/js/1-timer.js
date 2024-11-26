@@ -41,7 +41,7 @@ flatpickr(datePicker, {
 });
 
 // Обробник кліку для кнопки старт
-startButton.addEventListener('click', () => {
+startBtn.addEventListener('click', () => {
   if (!selectedDate) return;
 
   startBtn.disabled = true; // Деактивувати кнопку
