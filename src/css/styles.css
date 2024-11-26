@@ -41,6 +41,7 @@ body {
 
 button[data-start] {
   max-width: 75px;
+  height: 40px;
   padding: 8px 16px;
   font-size: 16px;
   background-color: #cfcfcf;
