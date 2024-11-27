@@ -37,6 +37,7 @@ body {
   border-radius: 4px;
   max-width: 272px;
   height: 40px;
+  padding: 8px 118px 8px 16px;
 }
 
 button[data-start] {
